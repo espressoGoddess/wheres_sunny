@@ -8,7 +8,7 @@ export default function Stats() {
         <Col md={{span: 8, offset: 2}}>
           <Card border="light" className='mt-5'>
             <Card.Header>
-              Points
+              <h2 className='ms-3 mt-2 fs-4'>Points</h2>
             </Card.Header>
               <Card.Body className='mt-3 text-center'>
                 <div className='d-flex align-items-center justify-content-center'>
@@ -24,14 +24,15 @@ export default function Stats() {
                     <p className='display-2'>🌧️</p>
                     <p className='display-4'>10</p>
                   </div>
-                  <div className='ms-5 me-5 flex-row'>
+                  <div className='ms-5 flex-row'>
                     <p className='display-2'>❄️</p>
                     <p className='display-4'>0</p>
                   </div>
                 </div>
-                <hr/>
-              <Button className='mt-5' variant="outline-info">Check In!</Button>
             </Card.Body>
+            <Card.Footer className='text-end'>
+              <small className="text-muted me-3">You've checked in 15 times!</small>
+            </Card.Footer>
           </Card>
         </Col>
       </Row>  

@@ -1,5 +1,5 @@
 import './Stats.css';
-import { Button, Card, Col, Row, Container } from 'react-bootstrap';
+import {Card, Col, Row, Container } from 'react-bootstrap';
 
 export default function Stats() {
   return (

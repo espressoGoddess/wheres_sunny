@@ -1,12 +1,11 @@
-const fetchCall = (path) => {
-  return fetch(`http://api.weatherstack.com/current?access_key=20dec75054c286ec715498e8846f2071&query=${path}`)
+export default function fetchCall(location) {
+  return fetch(`http://api.weatherapi.com/v1/current.json?key=8be56b510d444b61835203526231904&q=48.76,-122${location[0]},${location[1]}`)
     .then(response => {
       if (response.ok) {
         return response.json();
       } else {
         throw new Error(response.status);
       }
-    });
+    })
+    .then(data => console.log(data))
 }
-
-export { fetchCall };

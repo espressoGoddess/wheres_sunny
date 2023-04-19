@@ -12,9 +12,9 @@ export default function Success() {
       <Row>
         <Col md={{span: 6, offset: 3}}>
           <Card className='text-center mt-5' border='light'>
-            <Card.Header className='text-cleft'>April 20, 2023</Card.Header>
+            <Card.Header className='text-start'>April 20, 2023</Card.Header>
             <Card.Body>
-              <Card.Title className='mt-4'>🌞</Card.Title>
+              <Card.Title className='mt-4 fs-1'>🌞</Card.Title>
               <Card.Subtitle className='mt-3'>
                 Yay! The current weather in Bellingham is sunny!
               </Card.Subtitle>

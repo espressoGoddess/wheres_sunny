@@ -12,8 +12,14 @@ export default function App() {
   const [location, setLocation] = useState([]);
   useEffect(() => {
     if (location.length) {
-      console.log(location)
-      fetchCall(location)
+      fetchCall(location).then(data => {
+        localStorage.setItem('checkin', JSON.stringify({
+          user: 1,
+          weather: data.current,
+          location: data.location
+        }));
+        console.log(JSON.parse(localStorage.getItem('checkin')))
+      });
     }
   }, [location])
 

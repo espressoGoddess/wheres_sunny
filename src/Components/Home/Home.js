@@ -3,9 +3,10 @@ import { useHistory } from 'react-router-dom';
 import './Home.css';
 import { Button, Card, Col, Row, Container } from 'react-bootstrap';
 
-export default function Home() {
+export default function Home({ setLocation }) {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+
   const routeToSuccess = () => {
     history.push('/you-just-checked-in-successfully');
   }
@@ -28,7 +29,7 @@ export default function Home() {
                 const geo =  navigator.geolocation;
                 geo.getCurrentPosition(
                   (position) => {
-                    console.log(position);
+                    setLocation([position.coords.latitude, position.coords.longitude]);
                     setIsLoading(false);
                     routeToSuccess();
                   },

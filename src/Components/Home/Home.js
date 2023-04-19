@@ -7,7 +7,7 @@ export default function Home() {
     <Container className='Home'>
       <Row>
         <Col md={{span: 8, offset: 2}}>
-          <Card>
+          <Card border="light">
             <Card.Body>
               <Card.Title>
                 Where's Sunny is an app that allows you to check in and gain points if it is sunny at your location.

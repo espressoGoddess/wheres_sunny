@@ -6,7 +6,7 @@ export default function Success() {
     <Container>
       <Row>
         <Col md={{span: 6, offset: 3}}>
-          <Card className="text-center mt-5">
+          <Card className="text-center mt-5" border="light">
             <Card.Header className="text-cleft">April, 20, 2023</Card.Header>
             <Card.Body>
               <Card.Title className="mt-4">🌞</Card.Title>

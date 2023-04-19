@@ -13,10 +13,15 @@ export default function App() {
   useEffect(() => {
     if (location.length) {
       fetchCall(location).then(data => {
+        console.log(data)
         localStorage.setItem('checkin', JSON.stringify({
           user: 1,
-          weather: data.current,
-          location: data.location
+          location: {
+          city: data.location.name,
+          state: data.location.region
+          },
+          is_day: data.current.is_day ? true : false,
+          weather_condition: data.current.condition.text
         }));
         console.log(JSON.parse(localStorage.getItem('checkin')))
       });

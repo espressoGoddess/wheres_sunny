@@ -1,21 +1,43 @@
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './Home.css';
 import { Button, Card, Col, Row, Container } from 'react-bootstrap';
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
+  const routeToSuccess = () => {
+    history.push('/you-just-checked-in-successfully');
+  }
 
   return (
     <Container className='Home'>
       <Row>
         <Col md={{span: 8, offset: 2}}>
-          <Card border="light">
+          <Card border='light'>
             <Card.Body>
               <Card.Title>
                 Where's Sunny is an app that allows you to check in and gain points if it is sunny at your location.
               </Card.Title>
-              <Card.Subtitle className='mt-3'>
+              <Card.Subtitle className='mt-3 mb-2'>
                 We do require geolocation to be turned on in your browser. <a href='https://www.wikihow.com/Enable-Location-Services-on-Google-Chrome'>Here</a> is a tutorial for how to do that.
               </Card.Subtitle>
-              <Button className='mt-5' variant="outline-info">Check In!</Button>
+              { isLoading ? <Card.Text className='loading-spinner display-2 mt-2'>☀️</Card.Text> : null }
+              <Button className='mt-2' variant='outline-info' onClick={() => {
+                setIsLoading(true);
+                const geo =  navigator.geolocation;
+                geo.getCurrentPosition(
+                  (position) => {
+                    console.log(position);
+                    setIsLoading(false);
+                    routeToSuccess();
+                  },
+                  () => {
+                    console.log('no');
+                    setIsLoading(false);
+                  }
+                )
+              }}>Check In!</Button>
             </Card.Body>
           </Card>
         </Col>

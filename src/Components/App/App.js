@@ -4,7 +4,7 @@ import Stats from '../Stats/Stats';
 import Success from '../Success/Success';
 import './App.css';
 
-function App() {
+export default function App() {
   return (
     <main className="App">
       <header className="App-header">
@@ -13,11 +13,9 @@ function App() {
           <p>You last checked in on April 2, 2023</p>
         </Container>
       </header>
-      {/* <Home /> */}
+      <Home />
       {/* <Success /> */}
-      <Stats />
+      {/* <Stats /> */}
     </main>
   );
 }
-
-export default App;

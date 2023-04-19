@@ -21,7 +21,8 @@ export default function App() {
           state: data.location.region
           },
           is_day: data.current.is_day ? true : false,
-          weather_condition: data.current.condition.text
+          weather_condition: data.current.condition.text,
+          time: Date.now()
         }));
         console.log(JSON.parse(localStorage.getItem('checkin')))
       });

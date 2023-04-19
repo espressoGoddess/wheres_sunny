@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './Home.css';
 import { Button, Card, Col, Row, Container } from 'react-bootstrap';
 
 export default function Home() {
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
+  const routeToSuccess = () => {
+    history.push('/you-just-checked-in-successfully');
+  }
 
   return (
     <Container className='Home'>
@@ -25,6 +30,7 @@ export default function Home() {
                   (position) => {
                     console.log(position);
                     setIsLoading(false);
+                    routeToSuccess();
                   },
                   () => {
                     console.log('no');

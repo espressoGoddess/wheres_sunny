@@ -1,4 +1,6 @@
 import { Container, Col, Row, Button } from 'react-bootstrap';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom'
 import Home from '../Home/Home';
 import Stats from '../Stats/Stats';
 import Success from '../Success/Success';
@@ -13,9 +15,17 @@ export default function App() {
           <p>You last checked in on April 2, 2023</p>
         </Container>
       </header>
-      <Home />
-      {/* <Success /> */}
-      {/* <Stats /> */}
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <Route exact path='/you-just-checked-in-successfully'>
+            <Success />
+        </Route>
+        <Route exact path='/see-your-points'>
+          <Stats />
+        </Route>
+      </Switch>
     </main>
   );
 }

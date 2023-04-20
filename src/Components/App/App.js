@@ -10,21 +10,36 @@ import './App.css';
 export default function App() {
   const [currentLog, setCurrentLog] = useState(null);
   const [location, setLocation] = useState([]);
+  // const [totalPoints, setTotalPoints] = useState();
+  const [logs, setLogs] = useState([]);
+
+  const checkWeather = (data) => {
+    if (data.current.is_day) {
+      const condition = data.current.condition.text
+      if (condition === "Sunny") {
+        return 3
+      } else if (condition.includes("Cloudy" || "cloudy") && data.current.cloud < 75) {
+        return 2
+      } return 1
+    } return 0;
+  }
 
   useEffect(() => {
     if (location.length) {
       fetchCall(location).then(data => {
-        setCurrentLog({
-          user: 1,
-          location: {
-          city: data.location.name,
-          state: data.location.region
-          },
-          is_day: data.current.is_day ? true : false,
-          weather_condition: data.current.condition.text,
-          time: Date.now()
-        });
-        const oldLogs = JSON.parse(localStorage.getItem('checkin'));
+          setCurrentLog({
+            user: 1,
+            location: {
+            city: data.location.name,
+            state: data.location.region
+            },
+            is_day: data.current.is_day ? true : false,
+            weather_condition: data.current.condition.text,
+            date: new Date().toISOString().split('T')[0],
+            pointsReceived: checkWeather(data)
+          });
+        
+        const oldLogs = JSON.parse(localStorage.getItem('user1_checkin'));
         oldLogs ? 
           localStorage.setItem('user1_checkin', JSON.stringify([currentLog, oldLogs].flat())) : localStorage.setItem('user1_checkin', JSON.stringify([currentLog].flat()));
       });

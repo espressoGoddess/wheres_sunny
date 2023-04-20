@@ -13,8 +13,7 @@ export default function App() {
   useEffect(() => {
     if (location.length) {
       fetchCall(location).then(data => {
-        console.log(data)
-        localStorage.setItem('checkin', JSON.stringify({
+        const currentLog = {
           user: 1,
           location: {
           city: data.location.name,
@@ -23,7 +22,11 @@ export default function App() {
           is_day: data.current.is_day ? true : false,
           weather_condition: data.current.condition.text,
           time: Date.now()
-        }));
+        } 
+        console.log(data)
+        const oldLogs = JSON.parse(localStorage.getItem('checkin'));
+        oldLogs ? 
+          localStorage.setItem('checkin', JSON.stringify([currentLog, oldLogs].flat())) : localStorage.setItem('checkin', JSON.stringify([currentLog].flat()))
         console.log(JSON.parse(localStorage.getItem('checkin')))
       });
     }

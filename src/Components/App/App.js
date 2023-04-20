@@ -10,8 +10,7 @@ import './App.css';
 export default function App() {
   const [currentLog, setCurrentLog] = useState(null);
   const [location, setLocation] = useState([]);
-  // const [totalPoints, setTotalPoints] = useState();
-  const [logs, setLogs] = useState([]);
+
 
   const checkWeather = (data) => {
     if (data.current.is_day) {
@@ -61,7 +60,7 @@ export default function App() {
           <Home setLocation={setLocation}/>
         </Route>
         <Route exact path='/you-just-checked-in-successfully'>
-            <Success log={currentLog} setLogs={setLogs}/>
+            <Success log={currentLog}/>
         </Route>
         <Route exact path='/see-your-points'>
           <Stats />

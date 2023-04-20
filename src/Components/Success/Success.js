@@ -1,11 +1,13 @@
 import './Success.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { DateTime } from 'luxon';
 import { Button, Card, Col, Row, Container } from 'react-bootstrap';
 
-export default function Success({ log, setLogs }) {
+export default function Success({ log }) {
 
+  const [logs, setLogs] = useState([]);
+  
   useEffect(() => {
     setLogs(JSON.parse(localStorage.getItem('user1_checkin')));
   }, [])

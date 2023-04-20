@@ -1,4 +1,4 @@
-import { Container } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 import fetchCall from '../../utilities/api-calls';
 import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom'
@@ -8,7 +8,7 @@ import Success from '../Success/Success';
 import './App.css';
 
 export default function App() {
-  const [currentLog, setCurrentLog] = useState({});
+  const [currentLog, setCurrentLog] = useState(null);
   const [location, setLocation] = useState([]);
 
   useEffect(() => {
@@ -26,8 +26,7 @@ export default function App() {
         });
         const oldLogs = JSON.parse(localStorage.getItem('checkin'));
         oldLogs ? 
-          localStorage.setItem('checkin', JSON.stringify([currentLog, oldLogs].flat())) : localStorage.setItem('checkin', JSON.stringify([currentLog].flat()))
-        console.log(JSON.parse(localStorage.getItem('checkin')))
+          localStorage.setItem('user1_checkin', JSON.stringify([currentLog, oldLogs].flat())) : localStorage.setItem('user1_checkin', JSON.stringify([currentLog].flat()));
       });
     }
   }, [location])
@@ -45,7 +44,7 @@ export default function App() {
           <Home setLocation={setLocation}/>
         </Route>
         <Route exact path='/you-just-checked-in-successfully'>
-            <Success log={currentLog}/>
+            <Success log={currentLog} setLogs={setLogs}/>
         </Route>
         <Route exact path='/see-your-points'>
           <Stats />

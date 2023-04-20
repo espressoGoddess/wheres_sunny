@@ -8,12 +8,13 @@ import Success from '../Success/Success';
 import './App.css';
 
 export default function App() {
-
+  const [currentLog, setCurrentLog] = useState({});
   const [location, setLocation] = useState([]);
+
   useEffect(() => {
     if (location.length) {
       fetchCall(location).then(data => {
-        const currentLog = {
+        setCurrentLog({
           user: 1,
           location: {
           city: data.location.name,
@@ -22,8 +23,7 @@ export default function App() {
           is_day: data.current.is_day ? true : false,
           weather_condition: data.current.condition.text,
           time: Date.now()
-        } 
-        console.log(data)
+        });
         const oldLogs = JSON.parse(localStorage.getItem('checkin'));
         oldLogs ? 
           localStorage.setItem('checkin', JSON.stringify([currentLog, oldLogs].flat())) : localStorage.setItem('checkin', JSON.stringify([currentLog].flat()))
@@ -45,7 +45,7 @@ export default function App() {
           <Home setLocation={setLocation}/>
         </Route>
         <Route exact path='/you-just-checked-in-successfully'>
-            <Success />
+            <Success log={currentLog}/>
         </Route>
         <Route exact path='/see-your-points'>
           <Stats />

@@ -2,7 +2,7 @@ import './Success.css';
 import { useHistory } from 'react-router-dom'
 import { Button, Card, Col, Row, Container } from 'react-bootstrap';
 
-export default function Success() {
+export default function Success({ log }) {
   const history = useHistory();
   const routeToStats = () => {
     history.push('/see-your-points');

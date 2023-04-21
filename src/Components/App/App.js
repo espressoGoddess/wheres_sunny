@@ -1,4 +1,4 @@
-import { Container } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 import fetchCall from '../../utilities/api-calls';
 import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom'
@@ -8,13 +8,25 @@ import Success from '../Success/Success';
 import './App.css';
 
 export default function App() {
-
+  const [currentLog, setCurrentLog] = useState(null);
   const [location, setLocation] = useState([]);
+
+
+  const checkWeather = (data) => {
+    if (data.current.is_day) {
+      const condition = data.current.condition.text
+      if (condition === "Sunny") {
+        return 3
+      } else if (condition.includes("Cloudy" || "cloudy") && data.current.cloud < 75) {
+        return 2
+      } return 1
+    } return 0;
+  }
+
   useEffect(() => {
     if (location.length) {
       fetchCall(location).then(data => {
-        console.log(data)
-        localStorage.setItem('checkin', JSON.stringify({
+        const newLog = {
           user: 1,
           location: {
           city: data.location.name,
@@ -22,9 +34,15 @@ export default function App() {
           },
           is_day: data.current.is_day ? true : false,
           weather_condition: data.current.condition.text,
-          time: Date.now()
-        }));
-        console.log(JSON.parse(localStorage.getItem('checkin')))
+          date: new Date().toISOString().split('T')[0],
+          pointsReceived: checkWeather(data)
+        }
+        setCurrentLog(newLog);
+        
+        const oldLogs = JSON.parse(localStorage.getItem('user1_checkin'));
+        oldLogs
+          ? localStorage.setItem('user1_checkin', JSON.stringify([newLog, ...oldLogs]))
+          : localStorage.setItem('user1_checkin', JSON.stringify([newLog]));
       });
     }
   }, [location])
@@ -42,7 +60,7 @@ export default function App() {
           <Home setLocation={setLocation}/>
         </Route>
         <Route exact path='/you-just-checked-in-successfully'>
-            <Success />
+            <Success log={currentLog}/>
         </Route>
         <Route exact path='/see-your-points'>
           <Stats />

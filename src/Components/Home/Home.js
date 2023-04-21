@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import './Home.css';
 import { Button, Card, Col, Row, Container } from 'react-bootstrap';
 
 export default function Home({ setLocation }) {
   const [isLoading, setIsLoading] = useState(false);
-  const history = useHistory();
-
-  const routeToSuccess = () => {
-    history.push('/you-just-checked-in-successfully');
-  }
-
   return (
     <Container className='Home'>
       <Row>
@@ -31,7 +24,6 @@ export default function Home({ setLocation }) {
                   (position) => {
                     setLocation([position.coords.latitude, position.coords.longitude]);
                     setIsLoading(false);
-                    routeToSuccess();
                   },
                   () => {
                     console.log('no');

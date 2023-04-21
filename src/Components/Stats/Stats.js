@@ -1,4 +1,5 @@
 import './Stats.css';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {Card, Button, Col, Row, Container } from 'react-bootstrap';
 

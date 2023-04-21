@@ -1,7 +1,7 @@
 import { Card, Container } from 'react-bootstrap';
 import fetchCall from '../../utilities/api-calls';
 import React, { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, useHistory } from 'react-router-dom'
 import Home from '../Home/Home';
 import Stats from '../Stats/Stats';
 import Success from '../Success/Success';
@@ -43,6 +43,7 @@ export default function App() {
         oldLogs
           ? localStorage.setItem('user1_checkin', JSON.stringify([newLog, ...oldLogs]))
           : localStorage.setItem('user1_checkin', JSON.stringify([newLog]));
+        history.push('/you-just-checked-in-successfully');
       });
     }
   }, [location])

@@ -10,22 +10,30 @@ import './App.css';
 export default function App() {
   const [currentLog, setCurrentLog] = useState(null);
   const [location, setLocation] = useState([]);
-
+  const history = useHistory();
 
   const checkWeather = (data) => {
     if (data.current.is_day) {
-      const condition = data.current.condition.text
-      if (condition === "Sunny") {
-        return 3
-      } else if (condition.includes("Cloudy" || "cloudy") && data.current.cloud < 75) {
-        return 2
-      } return 1
-    } return 0;
+      const condition = data.current.condition.text.toLowerCase();
+      if (condition.includes('sunny')) {
+        return [ '☀️', 3];
+      } else if (condition.includes("cloudy")) {
+        return [ '🌤️', 2];
+      } else if (condition.includes('snow')) {
+        return [ '❄️', 1];
+      } else if (condition.includes('overcast')) {
+        return [ '☁️', 1];
+      } else if (condition.includes('rain')) {
+        return ['🌧️', 1];
+      }
+    }
+    return ['🌖', 0];
   }
 
   useEffect(() => {
     if (location.length) {
       fetchCall(location).then(data => {
+        const [icon, points] = checkWeather(data);
         const newLog = {
           user: 1,
           location: {
@@ -33,9 +41,10 @@ export default function App() {
           state: data.location.region
           },
           is_day: data.current.is_day ? true : false,
-          weather_condition: data.current.condition.text,
+          weather_condition: data.current.condition.text.toLowerCase(),
           date: new Date().toISOString().split('T')[0],
-          pointsReceived: checkWeather(data)
+          pointsReceived: points,
+          icon: icon
         }
         setCurrentLog(newLog);
         

@@ -48,7 +48,7 @@ export default function Success({ log }) {
                 The current weather in {log.location.city}, {log.location.state} is {log.weather_condition}.
                 </Card.Text>
               <Card.Text className='mt-2'>
-                You got {log.pointsReceived} point(s). You now have {getPoints()} total point(s).
+                You got {log.pointsReceived} point(s). You now have {points} total point(s).
               </Card.Text>
               <Button variant='outline-info' onClick={routeToStats}>See how you measure up!</Button>
             </Card.Body>

@@ -70,7 +70,7 @@ export default function App() {
           <Home setLocation={setLocation}/>
         </Route>
         <Route exact path='/you-just-checked-in-successfully'>
-            <Success log={currentLog}/>
+          <Success log={currentLog}/>
         </Route>
         <Route exact path='/see-your-points'>
           <Stats />

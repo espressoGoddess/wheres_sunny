@@ -5,6 +5,10 @@ import { DateTime } from 'luxon';
 import { Button, Card, Col, Row, Container } from 'react-bootstrap';
 
 export default function Success({ log }) {
+  const history = useHistory();
+  const routeToStats = () => {
+    history.push('/see-your-points');
+  }
 
   const [logs, setLogs] = useState([]);
   
@@ -18,10 +22,33 @@ export default function Success({ log }) {
     }
   }
 
-  const history = useHistory();
-  const routeToStats = () => {
-    history.push('/see-your-points');
+  const getIcon = () => {
+    if (!log) {
+      return;
+    }
+    if (log.weather_condition === "Sunny") {
+      return '☀️';
+    } else if (log.weather_condition === "Overcast") {
+      return '☁️';
+    } else if (log.weather_condition.includes("rain" || 'Rain')) {
+      return '🌧️';
+    } else if (log.weather_condition.includes('Snow' || 'snow')) {
+      return '❄️';
+    } else {
+      return '🌤️';
+    }
+  } 
+
+  const getPoints = () => {
+    if (!logs) {
+      return;
+    }
+    return logs.reduce((acc, cur) => {
+      acc += cur.pointsReceived
+      return acc;
+    }, 0);
   }
+
   return (
     log ? 
     <Container>
@@ -30,7 +57,7 @@ export default function Success({ log }) {
           <Card className='text-center mt-5' border='light'>
             <Card.Header className='text-start'>{formattedDate()}</Card.Header>
             <Card.Body>
-              <Card.Title className='mt-4 fs-1'>🌞</Card.Title>
+              <Card.Title className='mt-4 fs-1'>{getIcon()}</Card.Title>
               <Card.Subtitle className='mt-3'>
                 Success, You checked in!
               </Card.Subtitle>
@@ -38,7 +65,7 @@ export default function Success({ log }) {
                 The current weather in {log.location.city}, {log.location.state} is {log.weather_condition}.
                 </Card.Text>
               <Card.Text className='mt-2'>
-                You got {log.pointsReceived} points. You now have  total points.
+                You got {log.pointsReceived} point(s). You now have {getPoints()} total point(s).
               </Card.Text>
               <Button variant='outline-info' onClick={routeToStats}>See how you measure up!</Button>
             </Card.Body>

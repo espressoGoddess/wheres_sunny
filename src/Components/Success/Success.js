@@ -50,7 +50,7 @@ export default function Success({ log }) {
               <Card.Text className='mt-2'>
                 You got {log.pointsReceived} point(s). You now have {points} total point(s).
               </Card.Text>
-              <Button variant='outline-info' onClick={routeToStats}>See how you measure up!</Button>
+              <Button variant='outline-info' onClick={routeToStats}>See my points</Button>
             </Card.Body>
           </Card>
         </Col>

@@ -1,4 +1,4 @@
-import { Card, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import fetchCall from '../../utilities/api-calls';
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, useHistory } from 'react-router-dom'

@@ -45,7 +45,7 @@ export default function Stats() {
               </Tab>
             </Tabs>
           </Card>
-          <Button className='mt-5' variant='outline-info' onClick={routeToHome}>Go Home</Button>
+          <Button className='mt-5' variant='outline-info' onClick={() => history.push('/')}>Go Home</Button>
         </Col>
       </Row>  
     </Container>

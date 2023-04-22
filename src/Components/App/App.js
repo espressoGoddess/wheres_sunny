@@ -58,7 +58,7 @@ export default function App() {
       </header>
       <Switch>
         <Route exact path='/'>
-          <Home setLocation={setLocation}/>
+          <Home setLocation={setLocation} error={error} setError={setError}/>
         </Route>
         <Route exact path='/you-just-checked-in-successfully'>
           <Success log={currentLog}/>

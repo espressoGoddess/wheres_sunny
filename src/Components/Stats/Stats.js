@@ -17,13 +17,27 @@ export default function Stats() {
     return logs.filter(log => log.weather_condition.includes(weather))   
   }
 
+  const getFirstActiveTab = () => {
+    if (weatherSpecificRows('sunny').length) {
+      return 'sunny';
+    } else if (weatherSpecificRows('cloudy').length) {
+      return 'cloudy';
+    } else if (weatherSpecificRows('overcast').length) {
+      return 'overcast';
+    } else if (weatherSpecificRows('rain').length) {
+      return 'rain';
+    } else {
+      return 'snow';
+    }
+  }
+
   return (
     <Container className='Stats text-center'>
       <Row>
         <Col md={{span: 8, offset: 2}}>
           <Card border='light' className='mt-5'>
-            <Tabs
-              defaultActiveKey='sunny'
+            {logs.length ? (<Tabs
+              defaultActiveKey={getFirstActiveTab()}
               id='fill-tab-example'
               className='mb-3'
               fill

@@ -11,6 +11,7 @@ export default function DetailedStatsLog({ logs }) {
       <td>{matched.userName}</td>
       <td>{DateTime.fromFormat(matched.date, 'yyyy-MM-dd').toLocaleString(DateTime.DATE_MED)}</td>
       <td>{matched.location.city}, {matched.location.state}</td>
+      <td>{matched.is_day ? 'yes' : 'no'}</td>
       <td>{matched.pointsReceived}</td>
     </tr>)
   });
@@ -22,6 +23,7 @@ export default function DetailedStatsLog({ logs }) {
           <th>Name</th>
           <th>Date</th>
           <th>Location</th>
+          <th>Was it Daylight?</th>
           <th>Points</th>
         </tr>
       </thead>

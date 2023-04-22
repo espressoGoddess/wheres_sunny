@@ -42,22 +42,22 @@ export default function Stats() {
               className='mb-3'
               fill
             >
-              <Tab eventKey='sunny' disabled={!weatherSpecificRows('sunny').length} title={<span className='display-2'>☀️</span>}>
-                <DetailedStatsLog logs={weatherSpecificRows('sunny')}/>
+              <Tab eventKey='sunny' title={<span className='display-2'>☀️</span>}>
+                  {!weatherSpecificRows('sunny').length ? (<p>Whoops, Try going to the desert 🏜️</p>) : (<DetailedStatsLog logs={weatherSpecificRows('sunny')}/>)}
               </Tab>
-              <Tab eventKey='cloudy' disabled={!weatherSpecificRows('cloudy').length} title={<span className='display-2'>🌤️</span>}>
-                <DetailedStatsLog logs={weatherSpecificRows('cloudy')}/>
+              <Tab eventKey='cloudy' title={<span className='display-2'>🌤️</span>}>
+                {!weatherSpecificRows('cloudy').length ? (<p>Whoops, Try going to Washington 🌲</p>) : (<DetailedStatsLog logs={weatherSpecificRows('cloudy')}/>)}
               </Tab>
-              <Tab eventKey='overcast' disabled={!weatherSpecificRows('overcast').length} title={<span className='display-2'>☁️</span>}>
-                <DetailedStatsLog logs={weatherSpecificRows('overcast')}/>
+              <Tab eventKey='overcast' title={<span className='display-2'>☁️</span>}>
+                {!weatherSpecificRows('overcast').length ? (<p>Whoops, Try going to Washington 🌲</p>) : (<DetailedStatsLog logs={weatherSpecificRows('overcast')}/>)}
               </Tab>
-              <Tab eventKey='rain' disabled={!weatherSpecificRows('rain').length} title={<span className='display-2'>🌧️</span>}>
-                <DetailedStatsLog logs={weatherSpecificRows('rain')}/>
+              <Tab eventKey='rain' title={<span className='display-2'>🌧️</span>}>
+                {!weatherSpecificRows('rain').length ? (<p>Whoops, Try going to the rainforest 💧</p>) : (<DetailedStatsLog logs={weatherSpecificRows('rain')}/>)}
               </Tab>
-              <Tab eventKey='snow' disabled={!weatherSpecificRows('snow').length} title={<span className='display-2'>❄️</span>}>
-                <DetailedStatsLog logs={weatherSpecificRows('snow')}/>
+              <Tab eventKey='snow' title={<span className='display-2'>🌨️</span>}>
+                {!weatherSpecificRows('snow').length ? (<p>Whoops, Try going to Antarctica ❄️</p>) : (<DetailedStatsLog logs={weatherSpecificRows('snow')}/>)}
               </Tab>
-            </Tabs>
+            </Tabs>) : null}  
           </Card>
           <Button className='mt-5' variant='outline-info' onClick={() => history.push('/')}>Go Home</Button>
         </Col>

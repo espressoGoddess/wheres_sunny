@@ -20,7 +20,7 @@ export default function App() {
       } else if (condition.includes("cloudy")) {
         return [ '🌤️', 2];
       } else if (condition.includes('snow')) {
-        return [ '❄️', 1];
+        return [ '🌨️', 1];
       } else if (condition.includes('overcast')) {
         return [ '☁️', 1];
       } else if (condition.includes('rain')) {

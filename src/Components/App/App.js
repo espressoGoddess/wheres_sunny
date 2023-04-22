@@ -1,7 +1,7 @@
-import { Card, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import fetchCall from '../../utilities/api-calls';
 import React, { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, useHistory } from 'react-router-dom'
 import Home from '../Home/Home';
 import Stats from '../Stats/Stats';
 import Success from '../Success/Success';
@@ -10,32 +10,43 @@ import './App.css';
 export default function App() {
   const [currentLog, setCurrentLog] = useState(null);
   const [location, setLocation] = useState([]);
-
+  const history = useHistory();
 
   const checkWeather = (data) => {
     if (data.current.is_day) {
-      const condition = data.current.condition.text
-      if (condition === "Sunny") {
-        return 3
-      } else if (condition.includes("Cloudy" || "cloudy") && data.current.cloud < 75) {
-        return 2
-      } return 1
-    } return 0;
+      const condition = data.current.condition.text.toLowerCase();
+      if (condition.includes('sunny')) {
+        return [ '☀️', 3];
+      } else if (condition.includes("cloudy")) {
+        return [ '🌤️', 2];
+      } else if (condition.includes('snow')) {
+        return [ '🌨️', 1];
+      } else if (condition.includes('overcast')) {
+        return [ '☁️', 1];
+      } else if (condition.includes('rain')) {
+        return ['🌧️', 1];
+      }
+    }
+    return ['🌖', 0];
   }
 
   useEffect(() => {
-    if (location.length) {
-      fetchCall(location).then(data => {
+    (async () => {
+      if (location.length) {
+        const data = await fetchCall(location);
+        const [icon, points] = checkWeather(data);
         const newLog = {
           user: 1,
+          id: Date.now(),
           location: {
           city: data.location.name,
           state: data.location.region
           },
           is_day: data.current.is_day ? true : false,
-          weather_condition: data.current.condition.text,
+          weather_condition: data.current.condition.text.toLowerCase(),
           date: new Date().toISOString().split('T')[0],
-          pointsReceived: checkWeather(data)
+          pointsReceived: points,
+          icon: icon
         }
         setCurrentLog(newLog);
         
@@ -43,8 +54,9 @@ export default function App() {
         oldLogs
           ? localStorage.setItem('user1_checkin', JSON.stringify([newLog, ...oldLogs]))
           : localStorage.setItem('user1_checkin', JSON.stringify([newLog]));
-      });
-    }
+        history.push('/you-just-checked-in-successfully');
+      }
+    })();
   }, [location])
 
   return (
@@ -60,7 +72,7 @@ export default function App() {
           <Home setLocation={setLocation}/>
         </Route>
         <Route exact path='/you-just-checked-in-successfully'>
-            <Success log={currentLog}/>
+          <Success log={currentLog}/>
         </Route>
         <Route exact path='/see-your-points'>
           <Stats />

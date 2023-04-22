@@ -1,45 +1,65 @@
 import './Stats.css';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import {Card, Button, Col, Row, Container } from 'react-bootstrap';
+import DetailedStatsLog from '../DetailedStatsLog/DetailedStatsLog';
+import {Card, Button, Col, Row, Container, Tab, Tabs } from 'react-bootstrap';
 
 export default function Stats() {
   const history = useHistory();
-  const routeToHome = () => {
-    history.push('/');
+
+  const [logs, setLogs] = useState([]);
+  
+  useEffect(() => {
+    setLogs(JSON.parse(localStorage.getItem('user1_checkin')));
+  }, [])
+
+  const weatherSpecificRows = (weather) => {
+    return logs.filter(log => log.weather_condition.includes(weather))   
   }
+
+  const getFirstActiveTab = () => {
+    if (weatherSpecificRows('sunny').length) {
+      return 'sunny';
+    } else if (weatherSpecificRows('cloudy').length) {
+      return 'cloudy';
+    } else if (weatherSpecificRows('overcast').length) {
+      return 'overcast';
+    } else if (weatherSpecificRows('rain').length) {
+      return 'rain';
+    } else {
+      return 'snow';
+    }
+  }
+
   return (
     <Container className='Stats text-center'>
       <Row>
         <Col md={{span: 8, offset: 2}}>
-          <Card border="light" className='mt-5'>
-            <Card.Header>
-              <h2 className='ms-3 mt-2 fs-4 text-start'>Points</h2>
-            </Card.Header>
-              <Card.Body className='mt-3 text-center'>
-                <div className='d-flex align-items-center justify-content-center'>
-                  <div className='me-5 text-center'>
-                    <p className='display-2'>☀️</p>
-                    <p className='display-4'>3</p>
-                  </div>
-                  <div className='ms-5 me-5 flex-row'>
-                    <p className='display-2'>🌤️</p>
-                    <p className='display-4'>7</p>
-                  </div>
-                  <div className='ms-5 me-5 flex-row'>
-                    <p className='display-2'>🌧️</p>
-                    <p className='display-4'>10</p>
-                  </div>
-                  <div className='ms-5 flex-row'>
-                    <p className='display-2'>❄️</p>
-                    <p className='display-4'>0</p>
-                  </div>
-                </div>
-            </Card.Body>
-            <Card.Footer className='text-end'>
-              <small className="text-muted me-3">You've checked in 15 times!</small>
-            </Card.Footer>
+          <Card border='light' className='mt-5'>
+            {logs.length ? (<Tabs
+              defaultActiveKey={getFirstActiveTab()}
+              id='fill-tab-example'
+              className='mb-3'
+              fill
+            >
+              <Tab eventKey='sunny' title={<span className='display-2'>☀️</span>}>
+                  {!weatherSpecificRows('sunny').length ? (<p>Whoops, Try going to the desert 🏜️</p>) : (<DetailedStatsLog logs={weatherSpecificRows('sunny')}/>)}
+              </Tab>
+              <Tab eventKey='cloudy' title={<span className='display-2'>🌤️</span>}>
+                {!weatherSpecificRows('cloudy').length ? (<p>Whoops, Try going to Washington 🌲</p>) : (<DetailedStatsLog logs={weatherSpecificRows('cloudy')}/>)}
+              </Tab>
+              <Tab eventKey='overcast' title={<span className='display-2'>☁️</span>}>
+                {!weatherSpecificRows('overcast').length ? (<p>Whoops, Try going to Washington 🌲</p>) : (<DetailedStatsLog logs={weatherSpecificRows('overcast')}/>)}
+              </Tab>
+              <Tab eventKey='rain' title={<span className='display-2'>🌧️</span>}>
+                {!weatherSpecificRows('rain').length ? (<p>Whoops, Try going to the rainforest 💧</p>) : (<DetailedStatsLog logs={weatherSpecificRows('rain')}/>)}
+              </Tab>
+              <Tab eventKey='snow' title={<span className='display-2'>🌨️</span>}>
+                {!weatherSpecificRows('snow').length ? (<p>Whoops, Try going to Antarctica ❄️</p>) : (<DetailedStatsLog logs={weatherSpecificRows('snow')}/>)}
+              </Tab>
+            </Tabs>) : null}  
           </Card>
-          <Button className='mt-5' variant='outline-info' onClick={routeToHome}>Go Home</Button>
+          <Button className='mt-5' variant='outline-info' onClick={() => history.push('/')}>Go Home</Button>
         </Col>
       </Row>  
     </Container>

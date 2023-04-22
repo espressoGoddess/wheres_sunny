@@ -56,9 +56,10 @@ export default function App() {
           <h1 className='ms-3 mb-0'>Where's Sunny</h1>
         </Container>
       </header>
+      {error ? (<Container className='mt-5'><Alert variant='warning'>There's been an API error, please try again later</Alert></Container>) : null}
       <Switch>
         <Route exact path='/'>
-          <Home setLocation={setLocation} error={error} setError={setError}/>
+          <Home setLocation={setLocation} />
         </Route>
         <Route exact path='/you-just-checked-in-successfully'>
           <Success log={currentLog}/>

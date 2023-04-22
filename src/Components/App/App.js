@@ -31,8 +31,9 @@ export default function App() {
   }
 
   useEffect(() => {
-    if (location.length) {
-      fetchCall(location).then(data => {
+    (async () => {
+      if (location.length) {
+        const data = await fetchCall(location);
         const [icon, points] = checkWeather(data);
         const newLog = {
           user: 1,
@@ -55,8 +56,8 @@ export default function App() {
           ? localStorage.setItem('user1_checkin', JSON.stringify([newLog, ...oldLogs]))
           : localStorage.setItem('user1_checkin', JSON.stringify([newLog]));
         history.push('/you-just-checked-in-successfully');
-      });
-    }
+      }
+    })();
   }, [location])
 
   return (

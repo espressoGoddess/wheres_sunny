@@ -1,10 +1,12 @@
 import { Container } from 'react-bootstrap';
 import fetchCall from '../../utilities/api-calls';
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, useHistory } from 'react-router-dom'
+import { Switch, Route, useHistory, Link } from 'react-router-dom'
 import Home from '../Home/Home';
 import Stats from '../Stats/Stats';
 import Success from '../Success/Success';
+import logo from '../../logo.png';
+import categorizeWeather from '../../utilities/weather-categorization';
 import './App.css';
 
 export default function App() {
@@ -12,29 +14,11 @@ export default function App() {
   const [location, setLocation] = useState([]);
   const history = useHistory();
 
-  const checkWeather = (data) => {
-    if (data.current.is_day) {
-      const condition = data.current.condition.text.toLowerCase();
-      if (condition.includes('sunny')) {
-        return [ '☀️', 3];
-      } else if (condition.includes("cloudy")) {
-        return [ '🌤️', 2];
-      } else if (condition.includes('snow')) {
-        return [ '🌨️', 1];
-      } else if (condition.includes('overcast')) {
-        return [ '☁️', 1];
-      } else if (condition.includes('rain')) {
-        return ['🌧️', 1];
-      }
-    }
-    return ['🌖', 0];
-  }
-
   useEffect(() => {
     (async () => {
       if (location.length) {
         const data = await fetchCall(location);
-        const [icon, points] = checkWeather(data);
+        const [category, points] = categorizeWeather(data);
         const newLog = {
           user: 1,
           id: Date.now(),
@@ -46,7 +30,7 @@ export default function App() {
           weather_condition: data.current.condition.text.toLowerCase(),
           date: new Date().toISOString().split('T')[0],
           pointsReceived: points,
-          icon: icon
+          category: category
         }
         setCurrentLog(newLog);
         
@@ -61,10 +45,10 @@ export default function App() {
 
   return (
     <main className="App">
-      <header className="App-header">
-        <Container className='d-flex justify-content-between mt-4'>
-          <h1>Where's Sunny</h1>
-          <p>You last checked in on April 2, 2023</p>
+      <header>
+        <Container className='d-flex justify-content-start mt-4'>
+          <Link to='/'><img className='mt-1' src={`${logo}`}/></Link>
+          <h1 className='ms-3'>Where's Sunny</h1>
         </Container>
       </header>
       <Switch>

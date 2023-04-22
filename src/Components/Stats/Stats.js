@@ -14,8 +14,18 @@ export default function Stats() {
   }, [])
 
   const weatherSpecificRows = (weather) => {
-    return logs.filter(log => log.weather_condition.includes(weather))   
+    return logs.filter(log => log.category === weather);
   }
+
+  const totalPoints = (() => {
+    if (!logs) {
+      return;
+    }
+    return logs.reduce((acc, cur) => {
+      acc += cur.pointsReceived
+      return acc;
+    }, 0);
+  })();
 
   const getFirstActiveTab = () => {
     if (weatherSpecificRows('sunny').length) {
@@ -57,7 +67,8 @@ export default function Stats() {
               <Tab eventKey='snow' title={<span className='display-2'>🌨️</span>}>
                 {!weatherSpecificRows('snow').length ? (<p>Whoops, Try going to Antarctica ❄️</p>) : (<DetailedStatsLog logs={weatherSpecificRows('snow')}/>)}
               </Tab>
-            </Tabs>) : null}  
+            </Tabs>) : null}
+            <Card.Footer className='text-start'>You have {totalPoints} point(s).</Card.Footer>
           </Card>
           <Button className='mt-5' variant='outline-info' onClick={() => history.push('/')}>Go Home</Button>
         </Col>

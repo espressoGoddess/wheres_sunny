@@ -26,7 +26,6 @@ export default function Home({ setLocation }) {
                     setIsLoading(false);
                   },
                   () => {
-                    console.log('no');
                     setIsLoading(false);
                   }
                 )

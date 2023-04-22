@@ -3,3 +3,8 @@
   background-size: cover;
   height: 100vh;
 }
+
+img {
+  height: 37px;
+  width: auto;
+}

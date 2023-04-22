@@ -1,4 +1,4 @@
-import { Container } from 'react-bootstrap';
+import { Container, Alert } from 'react-bootstrap';
 import fetchCall from '../../utilities/api-calls';
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, useHistory, Link } from 'react-router-dom'
@@ -42,7 +42,7 @@ export default function App() {
             : localStorage.setItem('user1_checkin', JSON.stringify([newLog]));
           history.push('/you-just-checked-in-successfully');
         } catch(err) {
-          setError(true)
+          setError(true);
         }
       }
     })();
@@ -51,9 +51,9 @@ export default function App() {
   return (
     <main className="App">
       <header>
-        <Container className='d-flex justify-content-start mt-4'>
-          <Link to='/'><img className='mt-1' src={`${logo}`}/></Link>
-          <h1 className='ms-3'>Where's Sunny</h1>
+        <Container className='d-flex justify-content-start align-items-center mt-4'>
+          <Link to='/'><Logo className='text-warning'/></Link>
+          <h1 className='ms-3 mb-0'>Where's Sunny</h1>
         </Container>
       </header>
       <Switch>

@@ -13,32 +13,37 @@ export default function App() {
   const [currentLog, setCurrentLog] = useState(null);
   const [location, setLocation] = useState([]);
   const history = useHistory();
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     (async () => {
       if (location.length) {
-        const data = await fetchCall(location);
-        const [category, points] = categorizeWeather(data);
-        const newLog = {
-          user: 1,
-          id: Date.now(),
-          location: {
-          city: data.location.name,
-          state: data.location.region
-          },
-          is_day: data.current.is_day ? true : false,
-          weather_condition: data.current.condition.text.toLowerCase(),
-          date: new Date().toISOString().split('T')[0],
-          pointsReceived: points,
-          category: category
+        try {        
+          const data = await fetchCall(location);
+          const [category, points] = categorizeWeather(data);
+          const newLog = {
+            user: 1,
+            id: Date.now(),
+            location: {
+            city: data.location.name,
+            state: data.location.region
+            },
+            is_day: data.current.is_day ? true : false,
+            weather_condition: data.current.condition.text.toLowerCase(),
+            date: new Date().toISOString().split('T')[0],
+            pointsReceived: points,
+            category: category
+          }
+          setCurrentLog(newLog);
+          setError(false);
+          const oldLogs = JSON.parse(localStorage.getItem('user1_checkin'));
+          oldLogs
+            ? localStorage.setItem('user1_checkin', JSON.stringify([newLog, ...oldLogs]))
+            : localStorage.setItem('user1_checkin', JSON.stringify([newLog]));
+          history.push('/you-just-checked-in-successfully');
+        } catch(err) {
+          setError(true)
         }
-        setCurrentLog(newLog);
-        
-        const oldLogs = JSON.parse(localStorage.getItem('user1_checkin'));
-        oldLogs
-          ? localStorage.setItem('user1_checkin', JSON.stringify([newLog, ...oldLogs]))
-          : localStorage.setItem('user1_checkin', JSON.stringify([newLog]));
-        history.push('/you-just-checked-in-successfully');
       }
     })();
   }, [location])

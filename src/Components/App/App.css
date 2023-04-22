@@ -1,3 +1,7 @@
+* {
+  font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
+
 .App {
   background-image: url('../../sun.png');
   background-size: cover;

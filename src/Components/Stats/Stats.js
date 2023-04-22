@@ -14,7 +14,7 @@ export default function Stats() {
   }, [])
 
   const weatherSpecificRows = (weather) => {
-    return logs.filter(log => log.weather_condition.includes(weather))   
+    return logs.filter(log => log.category === weather);
   }
 
   const getFirstActiveTab = () => {

@@ -37,7 +37,6 @@ export default function App() {
         const [icon, points] = checkWeather(data);
         const newLog = {
           user: 1,
-          userName: 'Amber',
           id: Date.now(),
           location: {
           city: data.location.name,

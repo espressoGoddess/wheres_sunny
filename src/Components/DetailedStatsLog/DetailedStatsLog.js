@@ -1,6 +1,7 @@
 import React from "react";
 import { DateTime } from "luxon";
 import { Table } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 
 export default function DetailedStatsLog({ logs }) {
@@ -30,4 +31,17 @@ export default function DetailedStatsLog({ logs }) {
       </tbody>
     </Table>
   );
+}
+
+DetailedStatsLog.propTypes = {
+  logs: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
+    is_day: PropTypes.bool.isRequired,
+    pointsReceived: PropTypes.number.isRequired,
+    location: PropTypes.shape({
+      city: PropTypes.string.isRequired,
+      state: PropTypes.string.isRequired
+    })
+  })).isRequired
 }

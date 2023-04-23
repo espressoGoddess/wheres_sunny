@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { DateTime } from 'luxon';
 import { Button, Card, Col, Row, Container } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 const NextSunnyDay = ({ forecast }) => {
   if (!forecast) {
@@ -72,3 +73,17 @@ export default function Success({ log, forecast }) {
   );
 }
 
+
+Success.propTypes = {
+  forecast: PropTypes.arrayOf(PropTypes.string),
+  log: PropTypes.shape({
+    date: PropTypes.string.isRequired,
+    pointsReceived: PropTypes.number.isRequired,
+    weather_condition: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired
+  })
+};
+
+NextSunnyDay.porpTypes = {
+  forecast: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+};

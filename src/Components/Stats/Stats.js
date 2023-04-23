@@ -44,7 +44,10 @@ export default function Stats() {
     <Container className='text-center'>
       <Row>
         <Col md={{span: 8, offset: 2}}>
-          <Card border='light' className='mt-5'>
+          <Card border='light' className='mt-5 mb-5'>
+            <div>
+              <Button className='mt-2' variant='outline-info' onClick={() => history.push('/')}>Go Home</Button>
+            </div>
             {logs.length ? (<Tabs
               defaultActiveKey={getFirstActiveTab()}
               id='fill-tab-example'
@@ -69,7 +72,6 @@ export default function Stats() {
             </Tabs>) : null}
             <Card.Footer className='text-start'>You have {totalPoints} point(s).</Card.Footer>
           </Card>
-          <Button className='mt-5' variant='outline-info' onClick={() => history.push('/')}>Go Home</Button>
         </Col>
       </Row>  
     </Container>

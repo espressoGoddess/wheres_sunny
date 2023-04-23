@@ -41,7 +41,7 @@ export default function Stats() {
     <Container className='text-center'>
       <Row>
         <Col md={{span: 8, offset: 2}}>
-          <Card className='mt-5 mb-5'>
+          <Card className='mt-5 mb-5' data-test='stats'>
             <div>
             </div>
             {logs.length ? (<Tabs

@@ -46,7 +46,7 @@ export default function Success({ log, forecast }) {
     <Container  className='mt-6'>
       <Row>
         <Col md={{span: 4, offset:1}}>
-          <Card className='text-center'>
+          <Card className='text-center' data-test='weather-results'>
             <Card.Title className='mt-5'>{formattedDate}</Card.Title>
               <Card.Body>
                 <Card.Text className='mt-2 fs-0'>
@@ -59,7 +59,7 @@ export default function Success({ log, forecast }) {
             </Card>
         </Col>
         <Col md={{span: 4, offset: 2}}>
-          <Card className='text-center'>
+          <Card className='text-center' data-test='points'>
             <Card.Header>
              {log.pointsReceived > 1 ? 'You got' : 'You only got'}
             </Card.Header>

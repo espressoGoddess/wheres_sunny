@@ -9,7 +9,7 @@ export default function LocationInfo() {
     <Container>
       <Row>
         <Col md={{span: 8, offset: 2}}>
-          <Card className='text-start mt-5'>
+          <Card className='text-start mt-5' data-test='location-info'>
             <Card.Header className='d-flex align-items-center justify-content-between'>
               <div>
                 How to enable Location Services

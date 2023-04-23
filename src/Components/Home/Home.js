@@ -9,18 +9,16 @@ export default function Home({ setLocation }) {
   const [error, setError] = useState(false);
 
   return (
-    <Container className='text-center mt-5'>
+    <Container className='text-center mt-6'>
       {error ? 
-        (<Container className='mt-5'>
-          <Alert variant='warning'>
+        (<Alert className='mt-5' variant='warning'>
             Uh oh, geolocation services required.{' '}
             <Alert.Link as={Link} to='/location-services-info'>
                Learn more
             </Alert.Link>
-          </Alert>
-        </Container>) : null}
+          </Alert>) : null}
       <Row>
-        <Col sm={6}>
+        <Col md={{span: 6, offset: 3}}>
           <Card>
             <Card.Body>
               <Card.Title className='text-start'>
@@ -29,11 +27,7 @@ export default function Home({ setLocation }) {
               <Card.Text className='mb-3 mt-3 text-start'>
                 Where's Sunny allows you to check in and gain points, weather depending
               </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col sm={6} className='text-center mt-4' style={{minHeight: 120}}>
-            <Button size='lg' disabled={isLoading} variant='outline-info' onClick={() => {
+              <Button size='lg' disabled={isLoading} variant='outline-info' onClick={() => {
               setIsLoading(true);
               setError(false);
               if ("geolocation" in navigator) {
@@ -52,6 +46,8 @@ export default function Home({ setLocation }) {
                 }
               }}>Check In!</Button>
               {isLoading ? <Card.Text className='loading-spinner display-2 mt-2'>☀️</Card.Text> : null }
+            </Card.Body>
+          </Card>
         </Col>
       </Row>  
     </Container>

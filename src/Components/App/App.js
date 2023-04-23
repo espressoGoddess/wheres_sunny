@@ -6,6 +6,7 @@ import Home from '../Home/Home';
 import Logo from './Logo';
 import Stats from '../Stats/Stats';
 import Success from '../Success/Success';
+import LocationInfo from '../LocationInfo/LocationInfo';
 import categorizeWeather from '../../utilities/weather-categorization';
 import './App.css';
 
@@ -72,6 +73,9 @@ export default function App() {
           </Route>
           <Route exact path='/see-your-points'>
             <Stats />
+          </Route>
+          <Route exact path='/location-services-info'>
+            <LocationInfo />
           </Route>
         </Switch>
         <footer>

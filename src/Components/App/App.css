@@ -15,7 +15,5 @@ img {
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  font-size: .8rem;
 }

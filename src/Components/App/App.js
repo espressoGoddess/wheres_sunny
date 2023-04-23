@@ -78,9 +78,6 @@ export default function App() {
             <LocationInfo />
           </Route>
         </Switch>
-        <footer>
-          <p>Powered by <a className=" link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></p>
-        </footer>
       </div>
     </main>
   );

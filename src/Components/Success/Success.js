@@ -62,6 +62,9 @@ export default function Success({ log, forecast }) {
                 {nextSunnyDay}
               </Card.Footer>) : null}
           </Card>
+          <footer className='mt-3'>
+          <p>powered by <a className=" link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href="https://www.weatherapi.com/" title="Weather API">WeatherAPI</a></p>
+        </footer>
         </Col>
       </Row>
     </Container>

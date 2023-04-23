@@ -3,43 +3,29 @@ import { useHistory } from 'react-router-dom';
 import { DateTime } from 'luxon';
 import { Button, Card, Col, Row, Container } from 'react-bootstrap';
 
+const NextSunnyDay = ({ forecast }) => {
+  if (!forecast) {
+    return;
+  }
+  const forecastedSunnyIndex = forecast.findIndex(data => data === 'sunny');
+  if (forecastedSunnyIndex >= 0) {
+    return (<>
+      <p>Good News:</p>
+      <p>It should be sunny in {forecastedSunnyIndex + 1} days!</p>
+    </>);
+  }
+  return <p>It doesn't look like it's going to be sunny for the next week 😔</p>;
+}
+
 export default function Success({ log, forecast }) {
   const history = useHistory();
   const routeToStats = () => {
     history.push('/see-your-points');
   }
 
-  const [logs, setLogs] = useState([]);
-  
-  useEffect(() => {
-    setLogs(JSON.parse(localStorage.getItem('user1_checkin')));
-  }, [])
-
-  const formattedDate = (() => {
-    if (log) {
-      return DateTime.fromFormat(log.date, 'yyyy-MM-dd').toLocaleString({ month: 'long', day: 'numeric' });
-    }
-  })();
-
-  const points = (() => {
-    if (!logs) {
-      return;
-    }
-    return logs.reduce((acc, cur) => {
-      acc += cur.pointsReceived
-      return acc;
-    }, 0);
-  })();
-  
-  const nextSunnyDay = (() => {
-    if (!forecast) {
-      return;
-    }
-    const forecastedSunnyIndex = forecast.findIndex(data => data === 'sunny');
-    if (forecastedSunnyIndex >= 0) {
-      return `It should be sunny in ${forecastedSunnyIndex + 1} days!`;
-    } return `It doesn't look like it's going to be sunny for the next week 😔`;
-  })();
+  const formattedDate = log
+    ? DateTime.fromFormat(log.date, 'yyyy-MM-dd').toLocaleString({ month: 'long', day: 'numeric' })
+    : null;
 
   return (
     log ? 
@@ -73,10 +59,7 @@ export default function Success({ log, forecast }) {
               <Card.Text>
               </Card.Text>
               <Button variant='outline-info' onClick={routeToStats}>See my points</Button>
-              <Card.Text className='mt-2'>
-                {nextSunnyDay.includes('should') ? <p>Good News:</p> : null}   
-                <p>{nextSunnyDay}</p>
-              </Card.Text>
+                <NextSunnyDay forecast={forecast}/>
             </Card.Body>
           </Card>
           <footer className='mt-3 text-end'>

@@ -38,6 +38,7 @@ export default function Home({ setLocation }) {
                 geo.getCurrentPosition(
                   (position) => {
                     setLocation([position.coords.latitude, position.coords.longitude]);
+                    setIsLoading(false);
                   },
                   () => {
                     setIsLoading(false);

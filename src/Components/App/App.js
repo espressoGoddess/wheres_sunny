@@ -21,7 +21,7 @@ export default function App() {
       if (location.length) {
         try {        
           const data = await fetchCall(location);
-          const [category, points] = categorizeWeather(data);
+          const [category, points, icon] = categorizeWeather(data);
           const newLog = {
             user: 1,
             id: Date.now(),
@@ -33,7 +33,8 @@ export default function App() {
             weather_condition: data.current.condition.text.toLowerCase(),
             date: new Date().toISOString().split('T')[0],
             pointsReceived: points,
-            category: category
+            category: category,
+            icon: icon
           }
           setCurrentLog(newLog);
           if (newLog.weather_condition !== 'sunny') {

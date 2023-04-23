@@ -1,4 +1,4 @@
-import { Container, Alert } from 'react-bootstrap';
+import { Container, Alert, Nav, Navbar } from 'react-bootstrap';
 import fetchCall from '../../utilities/api-calls';
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, useHistory, Link } from 'react-router-dom'
@@ -56,12 +56,14 @@ export default function App() {
 
   return (
     <main className="App">
-      <header>
-        <Container className='d-flex justify-content-start align-items-center pt-4'>
-          <Link to='/'><Logo className='text-warning'/></Link>
-          <h1 className='ms-3 mb-0'>Where's Sunny</h1>
-        </Container>
-      </header>
+        <Navbar>
+          <Container className='pt-4'>
+            <Navbar.Brand as={Link} to='/' className='d-flex'>
+              <Logo className='text-warning mt-2'/>
+              <h1 className='ms-3 mb-0'>Where's Sunny</h1>
+            </Navbar.Brand>
+          </Container>
+        </Navbar>
       <div>
         {error ? (<Container className='mt-5'><Alert variant='warning'>There's been an API error, please try again later</Alert></Container>) : null}
         <Switch>

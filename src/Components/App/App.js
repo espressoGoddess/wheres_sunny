@@ -1,10 +1,11 @@
 import { Container, Alert, Nav, Navbar } from 'react-bootstrap';
 import fetchCall from '../../utilities/api-calls';
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, useHistory, Link } from 'react-router-dom'
+import { Switch, Route, useHistory, Link, Redirect } from 'react-router-dom'
 import Home from '../Home/Home';
 import Logo from './Logo';
 import Stats from '../Stats/Stats';
+import Error from '../Error/Error';
 import Success from '../Success/Success';
 import LocationInfo from '../LocationInfo/LocationInfo';
 import categorizeWeather from '../../utilities/weather-categorization';
@@ -82,6 +83,10 @@ export default function App() {
           </Route>
           <Route exact path='/location-services-info'>
             <LocationInfo />
+          </Route>
+          <Route to='*'>
+            <Redirect to='/404'/>
+            <Error />
           </Route>
         </Switch>
         ) : null}

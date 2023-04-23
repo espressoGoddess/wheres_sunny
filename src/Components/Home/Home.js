@@ -25,7 +25,10 @@ export default function Home({ setLocation }) {
                 Shine, baby shine!
               </Card.Title>
               <Card.Text className='mb-3 mt-3 text-start'>
-                Where's Sunny allows you to check in and gain points, weather depending
+                Where's Sunny allows you to check in.
+              </Card.Text>
+              <Card.Text className='mb-3 mt-3 text-start'>
+                You get the most points if it is sunny.
               </Card.Text>
               <Button size='lg' disabled={isLoading} variant='outline-info' onClick={() => {
               setIsLoading(true);

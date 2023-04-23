@@ -66,7 +66,7 @@ export default function Stats() {
                 {!weatherSpecificRows('snow').length ? (<p>Whoops, Try going to Antarctica ❄️</p>) : (<DetailedStatsLog logs={weatherSpecificRows('snow')}/>)}
               </Tab>
             </Tabs>) : null}
-            <Card.Footer className='text-start'>You have {totalPoints} point(s).</Card.Footer>
+            <Card.Footer className='text-start'>You have {totalPoints} point{totalPoints > 1 ? 's' : null}.</Card.Footer>
           </Card>
         </Col>
       </Row>  

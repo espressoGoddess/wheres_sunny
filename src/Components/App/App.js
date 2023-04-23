@@ -16,12 +16,14 @@ export default function App() {
   const [forecast, setForecast] = useState(null);
   const history = useHistory();
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
       if (location.length) {
         try {        
           const data = await fetchCall(location);
+          setIsLoading(true);
           const [category, points, icon] = categorizeWeather(data);
           const newLog = {
             user: 1,
@@ -46,6 +48,7 @@ export default function App() {
           oldLogs
             ? localStorage.setItem('user1_checkin', JSON.stringify([newLog, ...oldLogs]))
             : localStorage.setItem('user1_checkin', JSON.stringify([newLog]));
+            setIsLoading(false);
           history.push('/you-just-checked-in-successfully');
         } catch(err) {
           setError(true);
@@ -66,7 +69,8 @@ export default function App() {
         </Navbar>
       <div>
         {error ? (<Container className='mt-5'><Alert variant='warning'>There's been an API error, please try again later</Alert></Container>) : null}
-        <Switch>
+        {!isLoading ? (
+          <Switch>
           <Route exact path='/'>
             <Home setLocation={setLocation} />
           </Route>
@@ -80,6 +84,7 @@ export default function App() {
             <LocationInfo />
           </Route>
         </Switch>
+        ) : null}
       </div>
     </main>
   );

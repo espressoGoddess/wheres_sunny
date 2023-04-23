@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
-import { Button, Card, Col, Row, Container } from 'react-bootstrap';
+import { Button, Card, Col, Row, Container, Alert } from 'react-bootstrap';
 
 export default function Home({ setLocation }) {
 
@@ -9,6 +10,15 @@ export default function Home({ setLocation }) {
 
   return (
     <Container className='text-center'>
+      {error ? 
+        (<Container className='mt-5'>
+          <Alert variant='warning'>
+            Uh oh, geolocation services required.{' '}
+            <Alert.Link as={Link} to='/location-services-info'>
+               Learn more
+            </Alert.Link>
+          </Alert>
+        </Container>) : null}
       <Row>
         <Col md={{span: 8, offset: 2}}>
           <Card border='light mt-5'>
@@ -16,11 +26,7 @@ export default function Home({ setLocation }) {
                 Where's Sunny allows you to check in and gain points, weather depending
               </Card.Header>
             <Card.Body>
-              <Card.Subtitle className='mt-2 mb-2'>
-                We require geolocation to be turned on in your browser. Here is how to turn on location on a <a className="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href='https://support.apple.com/en-au/guide/mac-help/mh35873/mac'>Mac</a> or <a className="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href='https://support.microsoft.com/en-us/windows/windows-location-service-and-privacy-3a8eee0a-5b0b-dc07-eede-2a5ca1c49088'>Windows</a> OS. You can learn how to turn location on in chrome <a className="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href='https://support.google.com/chrome/answer/142065?hl=en&co=GENIE.Platform%3DDesktop'>Here</a>
-              </Card.Subtitle>
               { isLoading ? <Card.Text className='loading-spinner display-2 mt-2'>☀️</Card.Text> : null }
-              {error ? (<p style={{color: 'red'}}>There was an error, please check that location services are on and enabled in the browser, then try again</p>) : null}
               <Button className='mt-2' variant='outline-info' onClick={() => {
                 setIsLoading(true);
                 setError(false);

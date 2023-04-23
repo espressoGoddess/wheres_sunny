@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import DetailedStatsLog from '../DetailedStatsLog/DetailedStatsLog';
-import {Card, Button, Col, Row, Container, Tab, Tabs } from 'react-bootstrap';
+import {Card, Col, Row, Container, Tab, Tabs } from 'react-bootstrap';
 
 export default function Stats() {
-  const history = useHistory();
-
   const [logs, setLogs] = useState([]);
   
   useEffect(() => {
@@ -46,7 +43,6 @@ export default function Stats() {
         <Col md={{span: 8, offset: 2}}>
           <Card className='mt-5 mb-5'>
             <div>
-              <Button className='mt-2' variant='outline-info' onClick={() => history.push('/')}>Go Home</Button>
             </div>
             {logs.length ? (<Tabs
               defaultActiveKey={getFirstActiveTab()}

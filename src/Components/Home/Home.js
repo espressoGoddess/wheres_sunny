@@ -12,12 +12,12 @@ export default function Home({ setLocation }) {
       <Row>
         <Col md={{span: 8, offset: 2}}>
           <Card border='light'>
+              <Card.Header className='text-start'>
+                Where's Sunny allows you to check in and gain points (depending on the weather)
+              </Card.Header>
             <Card.Body>
-              <Card.Title className='mt-3'>
-                Where's Sunny is an app that allows you to check in and gain points if it is sunny at your location.
-              </Card.Title>
-              <Card.Subtitle className='mt-4 mb-2'>
-                We do require geolocation to be turned on in your browser. <a href='https://www.wikihow.com/Enable-Location-Services-on-Google-Chrome'>Here</a> is a tutorial for how to do that.
+              <Card.Subtitle className='mt-2 mb-2'>
+                We require geolocation to be turned on in your browser. Here is how to turn on location on a <a href='https://support.apple.com/en-au/guide/mac-help/mh35873/mac'>Mac</a> or <a href='https://support.microsoft.com/en-us/windows/windows-location-service-and-privacy-3a8eee0a-5b0b-dc07-eede-2a5ca1c49088'>Windows</a> OS. You can learn how to turn location on in chrome <a href='https://support.google.com/chrome/answer/142065?hl=en&co=GENIE.Platform%3DDesktop'>Here</a>
               </Card.Subtitle>
               { isLoading ? <Card.Text className='loading-spinner display-2 mt-2'>☀️</Card.Text> : null }
               {error ? (<p style={{color: 'red'}}>There was an error, please check that location services are on and enabled in the browser, then try again</p>) : null}

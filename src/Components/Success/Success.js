@@ -11,7 +11,7 @@ const NextSunnyDay = ({ forecast }) => {
   const forecastedSunnyIndex = forecast.findIndex(data => data === 'sunny');
   if (forecastedSunnyIndex >= 0) {
     return (<>
-      <p>Good News:</p>
+      <p className='mt-3'>Good News:</p>
       <p>It should be sunny in {forecastedSunnyIndex + 1} days!</p>
     </>);
   }

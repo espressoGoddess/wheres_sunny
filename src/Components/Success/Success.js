@@ -47,23 +47,20 @@ export default function Success({ log, forecast }) {
       <Row>
         <Col md={{span: 6, offset: 3}}>
           <Card className='text-center mt-5' border='light'>
-            <Card.Header className='text-start'>{formattedDate}</Card.Header>
+            <Card.Header className='d-flex align-items-center justify-content-between'><p>{formattedDate}</p><p>successful check in</p></Card.Header>
             <Card.Body>
               <Card.Title className='mt-4 fs-1'>{log.icon}</Card.Title>
-              <Card.Subtitle className='mt-3'>
-                Success, You checked in!
-              </Card.Subtitle>
               <Card.Text className='mt-2'>
                 The current weather in {log.location.city}, {log.location.state} is {log.weather_condition}.
                 </Card.Text>
               <Card.Text className='mt-2'>
-                You got {log.pointsReceived} point(s). You now have {points} total point(s).
+                You got {log.pointsReceived} point{log.pointsReceived > 1 ? 's' : null}. You now have {points} total points.
               </Card.Text>
-              {forecast ? (<Card.Text className='mt-2'>
-                {nextSunnyDay}
-              </Card.Text>) : null}
               <Button variant='outline-info' onClick={routeToStats}>See my points</Button>
             </Card.Body>
+              {forecast ? (<Card.Footer className='mt-2 text-start'>
+                {nextSunnyDay}
+              </Card.Footer>) : null}
           </Card>
         </Col>
       </Row>

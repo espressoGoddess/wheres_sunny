@@ -27,7 +27,7 @@ export default function Home({ setLocation }) {
               </Card.Header>
             <Card.Body>
               { isLoading ? <Card.Text className='loading-spinner display-2 mt-2'>☀️</Card.Text> : null }
-              <Button className='mt-2' variant='outline-info' onClick={() => {
+              <Button className='mt-2' disabled={isLoading} variant='outline-info' onClick={() => {
                 setIsLoading(true);
                 setError(false);
                 if ("geolocation" in navigator) {

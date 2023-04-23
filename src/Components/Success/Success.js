@@ -1,4 +1,3 @@
-import './Success.css';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { DateTime } from 'luxon';

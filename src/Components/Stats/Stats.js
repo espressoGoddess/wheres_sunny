@@ -1,4 +1,3 @@
-import './Stats.css';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import DetailedStatsLog from '../DetailedStatsLog/DetailedStatsLog';
@@ -42,7 +41,7 @@ export default function Stats() {
   }
 
   return (
-    <Container className='Stats text-center'>
+    <Container className='text-center'>
       <Row>
         <Col md={{span: 8, offset: 2}}>
           <Card border='light' className='mt-5'>
@@ -52,19 +51,19 @@ export default function Stats() {
               className='mb-3'
               fill
             >
-              <Tab eventKey='sunny' title={<span className='display-2'>☀️</span>}>
+              <Tab eventKey='sunny' title={<span className='display-4'>☀️</span>}>
                   {!weatherSpecificRows('sunny').length ? (<p>Whoops, Try going to the desert 🏜️</p>) : (<DetailedStatsLog logs={weatherSpecificRows('sunny')}/>)}
               </Tab>
-              <Tab eventKey='cloudy' title={<span className='display-2'>🌤️</span>}>
+              <Tab eventKey='cloudy' title={<span className='display-4'>🌤️</span>}>
                 {!weatherSpecificRows('cloudy').length ? (<p>Whoops, Try going to Washington 🌲</p>) : (<DetailedStatsLog logs={weatherSpecificRows('cloudy')}/>)}
               </Tab>
-              <Tab eventKey='overcast' title={<span className='display-2'>☁️</span>}>
+              <Tab eventKey='overcast' title={<span className='display-4'>☁️</span>}>
                 {!weatherSpecificRows('overcast').length ? (<p>Whoops, Try going to Washington 🌲</p>) : (<DetailedStatsLog logs={weatherSpecificRows('overcast')}/>)}
               </Tab>
-              <Tab eventKey='rain' title={<span className='display-2'>🌧️</span>}>
+              <Tab eventKey='rain' title={<span className='display-4'>🌧️</span>}>
                 {!weatherSpecificRows('rain').length ? (<p>Whoops, Try going to the rainforest 💧</p>) : (<DetailedStatsLog logs={weatherSpecificRows('rain')}/>)}
               </Tab>
-              <Tab eventKey='snow' title={<span className='display-2'>🌨️</span>}>
+              <Tab eventKey='snow' title={<span className='display-4'>🌨️</span>}>
                 {!weatherSpecificRows('snow').length ? (<p>Whoops, Try going to Antarctica ❄️</p>) : (<DetailedStatsLog logs={weatherSpecificRows('snow')}/>)}
               </Tab>
             </Tabs>) : null}

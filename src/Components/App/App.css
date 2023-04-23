@@ -4,11 +4,18 @@
 
 .App {
   background-image: url('../../sun.png');
-  background-size: cover;
+  background-size: 180%;
+  background-position: 90% 5%;
   height: 100vh;
 }
 
 img {
   height: 37px;
   width: auto;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

@@ -8,12 +8,12 @@ export default function Home({ setLocation }) {
   const [error, setError] = useState(false);
 
   return (
-    <Container className='Home'>
+    <Container className='text-center'>
       <Row>
         <Col md={{span: 8, offset: 2}}>
-          <Card border='light'>
+          <Card border='light mt-5'>
               <Card.Header className='text-start'>
-                Where's Sunny allows you to check in and gain points (depending on the weather)
+                Where's Sunny allows you to check in and gain points, weather depending
               </Card.Header>
             <Card.Body>
               <Card.Subtitle className='mt-2 mb-2'>

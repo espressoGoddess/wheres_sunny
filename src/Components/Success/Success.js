@@ -46,7 +46,7 @@ export default function Success({ log, forecast }) {
     <Container  className='mt-6'>
       <Row>
         <Col md={{span: 4, offset:1}}>
-          <Card border='light' className='text-center'>
+          <Card className='text-center'>
             <Card.Title className='mt-5'>{formattedDate}</Card.Title>
               <Card.Body>
                 <Card.Text className='mt-2 fs-0'>

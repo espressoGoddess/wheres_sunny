@@ -56,26 +56,28 @@ export default function App() {
   return (
     <main className="App">
       <header>
-        <Container className='d-flex justify-content-start align-items-center mt-4'>
+        <Container className='d-flex justify-content-start align-items-center pt-4'>
           <Link to='/'><Logo className='text-warning'/></Link>
           <h1 className='ms-3 mb-0'>Where's Sunny</h1>
         </Container>
       </header>
-      {error ? (<Container className='mt-5'><Alert variant='warning'>There's been an API error, please try again later</Alert></Container>) : null}
-      <Switch>
-        <Route exact path='/'>
-          <Home setLocation={setLocation} />
-        </Route>
-        <Route exact path='/you-just-checked-in-successfully'>
-          <Success log={currentLog} forecast={forecast}/>
-        </Route>
-        <Route exact path='/see-your-points'>
-          <Stats />
-        </Route>
-      </Switch>
-      <footer>
-      <p>Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></p>
-      </footer>
+      <div>
+        {error ? (<Container className='mt-5'><Alert variant='warning'>There's been an API error, please try again later</Alert></Container>) : null}
+        <Switch>
+          <Route exact path='/'>
+            <Home setLocation={setLocation} />
+          </Route>
+          <Route exact path='/you-just-checked-in-successfully'>
+            <Success log={currentLog} forecast={forecast}/>
+          </Route>
+          <Route exact path='/see-your-points'>
+            <Stats />
+          </Route>
+        </Switch>
+        <footer>
+          <p>Powered by <a className=" link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></p>
+        </footer>
+      </div>
     </main>
   );
 }

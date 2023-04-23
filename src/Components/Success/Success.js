@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { DateTime } from 'luxon';
 import { Button, Card, Col, Row, Container } from 'react-bootstrap';
 
-export default function Success({ log }) {
+export default function Success({ log, forecast }) {
   const history = useHistory();
   const routeToStats = () => {
     history.push('/see-your-points');
@@ -32,6 +32,13 @@ export default function Success({ log }) {
     }, 0);
   })();
 
+  const nextSunnyDay = (() => {
+    const forecastedSunnyIndex = forecast.findIndex(data => data === 'sunny');
+    if (forecastedSunnyIndex >= 0) {
+      return `Good news, it should be sunny in ${forecastedSunnyIndex + 1} days`;
+    } return `It doesn't look like it's going to be sunny for the next week 😔`;
+  })();
+
   return (
     log ? 
     <Container>
@@ -50,6 +57,9 @@ export default function Success({ log }) {
               <Card.Text className='mt-2'>
                 You got {log.pointsReceived} point(s). You now have {points} total point(s).
               </Card.Text>
+              {forecast ? (<Card.Text className='mt-2'>
+                {nextSunnyDay}
+              </Card.Text>) : null}
               <Button variant='outline-info' onClick={routeToStats}>See my points</Button>
             </Card.Body>
           </Card>

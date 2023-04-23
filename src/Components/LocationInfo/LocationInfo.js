@@ -8,29 +8,52 @@ export default function LocationInfo() {
   return (
     <Container>
       <Row>
-        <Col md={{span: 6, offset: 3}}>
-          <Card className='text-center mt-5'>
-            <Card.Header className='d-flex align-items-center'>
-              Geolocation Guide
+        <Col md={{span: 8, offset: 2}}>
+          <Card className='text-start mt-5'>
+            <Card.Header className='d-flex align-items-center justify-content-between'>
+              <div>
+                How to enable Location Services
+              </div>
+              <div>
+                <Button variant='outline-info' onClick={() => history.push('/')}>Go back</Button>
+              </div>
             </Card.Header>
             <Card.Body>
-              <Card.Title className='mt-4 fs-1'></Card.Title>
-              <Card.Text className='mt-2 text-start'>
-                <a className="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href='https://support.apple.com/en-au/guide/mac-help/mh35873/mac'>
-                  Here
-                </a> is a guide for turning on location services on Mac.
+              <Card.Subtitle className='mt-2'>
+                Where's Sunny requires your current location in order to more accurately determine how much sweet, sweet sunshine you are soaking up.
+              </Card.Subtitle>
+              <Card.Text className='mt-4'>
+                To enable Location Services:
               </Card.Text>
-              <Card.Text className='mt-2 text-start'>
+              <Card.Text>
+                1. First, make sure Location Services have been enabled in your Operating System settings.
+              </Card.Text>
+              <Card.Text>
+                <a className="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href='https://support.apple.com/en-us/HT207092'>
+                  iOS instructions
+                </a>
+              </Card.Text>
+              <Card.Text>
+                <a className="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href='https://support.google.com/accounts/answer/3467281?hl=en'>
+                  Android instructions
+                </a>
+              </Card.Text>
+              <Card.Text>
+                <a className="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href='https://support.apple.com/guide/mac-help/allow-apps-to-detect-the-location-of-your-mac-mh35873/mac'>
+                MacOS instructions
+                </a>
+              </Card.Text>
+              <Card.Text>
                 <a className="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href='https://support.microsoft.com/en-us/windows/windows-location-service-and-privacy-3a8eee0a-5b0b-dc07-eede-2a5ca1c49088'>
-                  Here
-                </a> is a guide for turning on location services on Windows. 
+                  Windows instructions
+                </a>
               </Card.Text>
-              <Card.Text className='mt-2 text-start'>
-                <a className="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href='https://support.google.com/chrome/answer/142065?hl=en&co=GENIE.Platform%3DDesktop'>
-                  Here 
-                </a> you can learn how to turn location on in chrome. 
+              <Card.Text>
+                2. Next, {' '}
+                <a className="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href='https://www.gps-coordinates.net/geolocation'>
+                  enable Location Services in your browser settings
+                </a>
               </Card.Text>
-              <Button variant='outline-info' onClick={() => history.push('/')}>Go back</Button>
             </Card.Body>
           </Card>
         </Col>

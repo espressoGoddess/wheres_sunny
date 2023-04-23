@@ -33,6 +33,9 @@ export default function Success({ log, forecast }) {
   })();
 
   const nextSunnyDay = (() => {
+    if (!forecast) {
+      return;
+    }
     const forecastedSunnyIndex = forecast.findIndex(data => data === 'sunny');
     if (forecastedSunnyIndex >= 0) {
       return `Good news, it should be sunny in ${forecastedSunnyIndex + 1} days`;

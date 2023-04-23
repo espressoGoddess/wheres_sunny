@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import DetailedStatsLog from '../DetailedStatsLog/DetailedStatsLog';
-import {Card, Button, Col, Row, Container, Tab, Tabs } from 'react-bootstrap';
+import {Card, Col, Row, Container, Tab, Tabs } from 'react-bootstrap';
 
 export default function Stats() {
-  const history = useHistory();
-
   const [logs, setLogs] = useState([]);
   
   useEffect(() => {
@@ -44,9 +41,8 @@ export default function Stats() {
     <Container className='text-center'>
       <Row>
         <Col md={{span: 8, offset: 2}}>
-          <Card border='light' className='mt-5 mb-5'>
+          <Card className='mt-5 mb-5'>
             <div>
-              <Button className='mt-2' variant='outline-info' onClick={() => history.push('/')}>Go Home</Button>
             </div>
             {logs.length ? (<Tabs
               defaultActiveKey={getFirstActiveTab()}
@@ -70,7 +66,7 @@ export default function Stats() {
                 {!weatherSpecificRows('snow').length ? (<p>Whoops, Try going to Antarctica ❄️</p>) : (<DetailedStatsLog logs={weatherSpecificRows('snow')}/>)}
               </Tab>
             </Tabs>) : null}
-            <Card.Footer className='text-start'>You have {totalPoints} point(s).</Card.Footer>
+            <Card.Footer className='text-start'>You have {totalPoints} point{totalPoints > 1 ? 's' : null}.</Card.Footer>
           </Card>
         </Col>
       </Row>  

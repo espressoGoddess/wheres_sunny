@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
-import { Button, Card, Col, Row, Container } from 'react-bootstrap';
+import { Button, Card, Col, Row, Container, Alert } from 'react-bootstrap';
 
 export default function Home({ setLocation }) {
 
@@ -8,38 +9,46 @@ export default function Home({ setLocation }) {
   const [error, setError] = useState(false);
 
   return (
-    <Container className='text-center'>
+    <Container className='text-center mt-6'>
+      {error ? 
+        (<Alert className='mt-5' variant='warning'>
+            Uh oh, geolocation services required.{' '}
+            <Alert.Link as={Link} to='/location-services-info'>
+               Learn more
+            </Alert.Link>
+          </Alert>) : null}
       <Row>
-        <Col md={{span: 8, offset: 2}}>
-          <Card border='light mt-5'>
-              <Card.Header className='text-start'>
-                Where's Sunny allows you to check in and gain points, weather depending
-              </Card.Header>
+        <Col md={{span: 6, offset: 3}}>
+          <Card>
             <Card.Body>
-              <Card.Subtitle className='mt-2 mb-2'>
-                We require geolocation to be turned on in your browser. Here is how to turn on location on a <a className="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href='https://support.apple.com/en-au/guide/mac-help/mh35873/mac'>Mac</a> or <a className="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href='https://support.microsoft.com/en-us/windows/windows-location-service-and-privacy-3a8eee0a-5b0b-dc07-eede-2a5ca1c49088'>Windows</a> OS. You can learn how to turn location on in chrome <a className="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href='https://support.google.com/chrome/answer/142065?hl=en&co=GENIE.Platform%3DDesktop'>Here</a>
-              </Card.Subtitle>
-              { isLoading ? <Card.Text className='loading-spinner display-2 mt-2'>☀️</Card.Text> : null }
-              {error ? (<p style={{color: 'red'}}>There was an error, please check that location services are on and enabled in the browser, then try again</p>) : null}
-              <Button className='mt-2' variant='outline-info' onClick={() => {
-                setIsLoading(true);
-                setError(false);
-                if ("geolocation" in navigator) {
-                  const geo =  navigator.geolocation;
-                  geo.getCurrentPosition(
-                    (position) => {
-                      setLocation([position.coords.latitude, position.coords.longitude]);
-                      setIsLoading(false);
-                    },
-                    () => {
-                      setIsLoading(false);
-                      setError(true);
-                    }
+              <Card.Title className='text-start'>
+                Shine, baby shine!
+              </Card.Title>
+              <Card.Text className='mb-3 mt-3 text-start'>
+                Where's Sunny allows you to check in.
+              </Card.Text>
+              <Card.Text className='mb-3 mt-3 text-start'>
+                You get the most points if it is sunny.
+              </Card.Text>
+              <Button size='lg' disabled={isLoading} variant='outline-info' onClick={() => {
+              setIsLoading(true);
+              setError(false);
+              if ("geolocation" in navigator) {
+                const geo =  navigator.geolocation;
+                geo.getCurrentPosition(
+                  (position) => {
+                    setLocation([position.coords.latitude, position.coords.longitude]);
+                  },
+                  () => {
+                    setIsLoading(false);
+                    setError(true);
+                  }
                   )
                 } else {
                   setError(true);
                 }
               }}>Check In!</Button>
+              {isLoading ? <Card.Text className='loading-spinner display-2 mt-2'>☀️</Card.Text> : null }
             </Card.Body>
           </Card>
         </Col>

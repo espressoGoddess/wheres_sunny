@@ -1,11 +1,13 @@
-import { Container, Alert } from 'react-bootstrap';
+import { Container, Alert, Nav, Navbar } from 'react-bootstrap';
 import fetchCall from '../../utilities/api-calls';
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, useHistory, Link } from 'react-router-dom'
+import { Switch, Route, useHistory, Link, Redirect } from 'react-router-dom'
 import Home from '../Home/Home';
 import Logo from './Logo';
 import Stats from '../Stats/Stats';
+import Error from '../Error/Error';
 import Success from '../Success/Success';
+import LocationInfo from '../LocationInfo/LocationInfo';
 import categorizeWeather from '../../utilities/weather-categorization';
 import './App.css';
 
@@ -15,12 +17,14 @@ export default function App() {
   const [forecast, setForecast] = useState(null);
   const history = useHistory();
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
       if (location.length) {
         try {        
           const data = await fetchCall(location);
+          setIsLoading(true);
           const [category, points, icon] = categorizeWeather(data);
           const newLog = {
             user: 1,
@@ -45,25 +49,29 @@ export default function App() {
           oldLogs
             ? localStorage.setItem('user1_checkin', JSON.stringify([newLog, ...oldLogs]))
             : localStorage.setItem('user1_checkin', JSON.stringify([newLog]));
+            setIsLoading(false);
           history.push('/you-just-checked-in-successfully');
         } catch(err) {
           setError(true);
         }
       }
     })();
-  }, [location])
+  }, [location, history])
 
   return (
     <main className="App">
-      <header>
-        <Container className='d-flex justify-content-start align-items-center pt-4'>
-          <Link to='/'><Logo className='text-warning'/></Link>
-          <h1 className='ms-3 mb-0'>Where's Sunny</h1>
-        </Container>
-      </header>
+        <Navbar>
+          <Container className='pt-4'>
+            <Navbar.Brand as={Link} to='/' className='d-flex'>
+              <Logo className='text-warning mt-2'/>
+              <h1 className='ms-3 mb-0'>Where's Sunny</h1>
+            </Navbar.Brand>
+          </Container>
+        </Navbar>
       <div>
         {error ? (<Container className='mt-5'><Alert variant='warning'>There's been an API error, please try again later</Alert></Container>) : null}
-        <Switch>
+        {!isLoading ? (
+          <Switch>
           <Route exact path='/'>
             <Home setLocation={setLocation} />
           </Route>
@@ -73,10 +81,15 @@ export default function App() {
           <Route exact path='/see-your-points'>
             <Stats />
           </Route>
+          <Route exact path='/location-services-info'>
+            <LocationInfo />
+          </Route>
+          <Route to='*'>
+            <Redirect to='/404'/>
+            <Error />
+          </Route>
         </Switch>
-        <footer>
-          <p>Powered by <a className=" link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></p>
-        </footer>
+        ) : null}
       </div>
     </main>
   );

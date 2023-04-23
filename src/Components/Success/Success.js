@@ -46,8 +46,8 @@ export default function Success({ log, forecast }) {
     <Container>
       <Row>
         <Col md={{span: 6, offset: 3}}>
-          <Card className='text-center mt-5' border='light'>
-            <Card.Header className='d-flex align-items-center justify-content-between'><p>{formattedDate}</p><p>successful check in</p></Card.Header>
+          <Card className='text-center mt-5'>
+            <Card.Header className='d-flex align-items-center justify-content-between'><div>{formattedDate}</div><div>successful check in</div></Card.Header>
             <Card.Body>
               <Card.Title className='mt-4 fs-1'>{log.icon}</Card.Title>
               <Card.Text className='mt-2'>

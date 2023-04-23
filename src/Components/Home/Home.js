@@ -21,7 +21,7 @@ export default function Home({ setLocation }) {
         </Container>) : null}
       <Row>
         <Col md={{span: 8, offset: 2}}>
-          <Card border='light mt-5'>
+          <Card className='mt-5'>
               <Card.Header className='text-start'>
                 Where's Sunny allows you to check in and gain points, weather depending
               </Card.Header>

@@ -52,7 +52,7 @@ export default function App() {
         }
       }
     })();
-  }, [location])
+  }, [location, history])
 
   return (
     <main className="App">

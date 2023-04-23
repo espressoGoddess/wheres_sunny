@@ -12,6 +12,7 @@ import './App.css';
 export default function App() {
   const [currentLog, setCurrentLog] = useState(null);
   const [location, setLocation] = useState([]);
+  const [forecast, setForecast] = useState(null);
   const history = useHistory();
   const [error, setError] = useState(false);
 
@@ -35,6 +36,9 @@ export default function App() {
             category: category
           }
           setCurrentLog(newLog);
+          if (newLog.weather_condition !== 'sunny') {
+            setForecast(data.forecast.forecastday.map(forecast => forecast.day.condition.text.toLowerCase()));
+          }
           setError(false);
           const oldLogs = JSON.parse(localStorage.getItem('user1_checkin'));
           oldLogs
@@ -62,7 +66,7 @@ export default function App() {
           <Home setLocation={setLocation} />
         </Route>
         <Route exact path='/you-just-checked-in-successfully'>
-          <Success log={currentLog}/>
+          <Success log={currentLog} forecast={forecast}/>
         </Route>
         <Route exact path='/see-your-points'>
           <Stats />

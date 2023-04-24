@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Where's Sunny
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Abstract:
 
-In the project directory, you can run:
 
-### `npm start`
+Where's Sunny is a silly app that allows users to 'check in.' Based on the user's location, the weather and forecasted weather is obtained. The user receives points for checking in, assuming it is daylight outside. The most points are awarded if it is currently sunny out. If it is not currently sunny, the user still gets points (just not as many) and the user is then able to see when the next sunny day is forecasted at the user's current location. The user is able to see a log of all their previous check-ins along with the weather, points received, and date for those check ins.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation Instructions:
 
-### `npm test`
+#### Deployed Link:
+[Where's Sunny](https://wheres-sunny.vercel.app/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##### OR
 
-### `npm run build`
+#### Local Installation:
+1. Fork this repository.
+2. Create a local repository.
+3. Follow the Github on-screen commands to connect your local repository to your newly forked repository.
+4. `npm start` to start the application locally.
+5. Navigate to `http://localhost:3000` in your browser to use the application. 
+  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Preview of App:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![wheres sunny](https://user-images.githubusercontent.com/108356274/233876359-c0ec5c92-5ed7-4d46-876a-efc83a6e993f.gif)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Context:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This application was completed in 15 hours.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Technologies used:
+- React (JavaScript, CSS, HTML)
+- React Router
+- Cypress
+- React Bootstrap
+- Bootstrap
+- Webpack
+- Luxon Date Wrapper
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Contributors:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[**A**mber Shipley](https://github.com/espressoGoddess)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Wins + Challenges:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Wins: 
 
-### Analyzing the Bundle Size
+- Utilized the Geolocation API and successfully stubbed/intercepted this request with Cypress
+- Auspiciously created React functional components and implemented various hooks for state management.
+- Successfully implemented React Bootstrap for the first time.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Challenges: 
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- It was challenging to implement error handling for if a location was not obtained. I was not sure how to check this at first.
+- There was an issue where the date was updating to the next day _before_ midnight. That was challenging to navigate.

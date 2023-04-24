@@ -28,6 +28,7 @@ export default function App() {
           const [category, points, icon] = categorizeWeather(data);
           const newLog = {
             user: 1,
+            id: Date.now(),
             location: {
             city: data.location.name,
             state: data.location.region

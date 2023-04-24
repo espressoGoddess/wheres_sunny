@@ -6,6 +6,13 @@
 
 Where's Sunny is a silly app that allows users to 'check in.' Based on the user's location, the weather and forecasted weather is obtained. The user receives points for checking in, assuming it is daylight outside. The most points are awarded if it is currently sunny out. If it is not currently sunny, the user still gets points (just not as many) and the user is then able to see when the next sunny day is forecasted at the user's current location. The user is able to see a log of all their previous check-ins along with the weather, points received, and date for those check ins.
 
+## Learning Goals:
+Demonstrate "mastery ' in :
+- React
+- Router
+- Asynchronous JavaScript
+- End to end testing with Cypress
+
 
 ## Installation Instructions:
 

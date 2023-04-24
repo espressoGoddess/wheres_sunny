@@ -23,8 +23,8 @@ export default function App() {
     (async () => {
       if (location.length) {
         try {        
-          const data = await fetchCall(location);
           setIsLoading(true);
+          const data = await fetchCall(location);
           const [category, points, icon] = categorizeWeather(data);
           const newLog = {
             user: 1,

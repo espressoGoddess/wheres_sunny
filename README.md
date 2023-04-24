@@ -24,7 +24,7 @@ Where's Sunny is a silly app that allows users to 'check in.' Based on the user'
 
 ## Preview of App:
 
-![wheres sunny](https://user-images.githubusercontent.com/108356274/233876359-c0ec5c92-5ed7-4d46-876a-efc83a6e993f.gif)
+![wheres sunny](https://user-images.githubusercontent.com/108356274/233880406-6016259f-73f2-4d28-9c2b-10160d57c762.gif)
 
 
 ## Context:

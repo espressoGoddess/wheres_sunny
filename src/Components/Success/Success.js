@@ -25,7 +25,7 @@ export default function Success({ log, forecast }) {
   }
 
   const formattedDate = log
-    ? DateTime.fromFormat(log.date, 'yyyy-MM-dd').toLocaleString({ month: 'long', day: 'numeric' })
+    ? DateTime.fromJSDate(log.date).toLocaleString({ month: 'long', day: 'numeric' })
     : null;
 
   return (
@@ -59,7 +59,7 @@ export default function Success({ log, forecast }) {
               </Card.Text>
               <Card.Text>
               </Card.Text>
-              <Button variant='outline-info' onClick={routeToStats}>See my points</Button>
+              <Button variant='outline-success' onClick={routeToStats}>See my points</Button>
                 <NextSunnyDay forecast={forecast}/>
             </Card.Body>
           </Card>
@@ -77,7 +77,7 @@ export default function Success({ log, forecast }) {
 Success.propTypes = {
   forecast: PropTypes.arrayOf(PropTypes.string),
   log: PropTypes.shape({
-    date: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date).isRequired,
     pointsReceived: PropTypes.number.isRequired,
     weather_condition: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired

@@ -31,7 +31,7 @@ export default function Home({ setLocation }) {
               <Card.Text className='mb-3 mt-3 text-start'>
                 You get the most points if it is sunny.
               </Card.Text>
-              <Button size='lg' disabled={isLoading} variant='outline-info' onClick={() => {
+              <Button size='lg' disabled={isLoading} variant='outline-success' onClick={() => {
               setIsLoading(true);
               setError(false);
               if ("geolocation" in navigator) {

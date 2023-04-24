@@ -7,9 +7,9 @@ import PropTypes from 'prop-types';
 export default function DetailedStatsLog({ logs }) {
 
   const weatherRows = 
-  logs.map(matched => {
+  logs?.map(matched => {
     return (<tr key={matched.id}>
-      <td>{DateTime.fromFormat(matched.date, 'yyyy-MM-dd').toLocaleString(DateTime.DATE_MED)}</td>
+      <td>{DateTime.fromJSDate(new Date(matched.date)).toLocaleString({ month: 'long', day: 'numeric' })}</td>
       <td>{matched.location.city}, {matched.location.state}</td>
       <td>{matched.is_day ? 'yes' : 'no'}</td>
       <td>{matched.pointsReceived}</td>

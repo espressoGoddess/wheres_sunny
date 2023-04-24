@@ -1,4 +1,4 @@
-import { Container, Alert, Navbar } from 'react-bootstrap';
+import { Container, Alert, Nav, Navbar } from 'react-bootstrap';
 import fetchCall from '../../utilities/api-calls';
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, useHistory, Link, Redirect } from 'react-router-dom'
@@ -28,14 +28,13 @@ export default function App() {
           const [category, points, icon] = categorizeWeather(data);
           const newLog = {
             user: 1,
-            id: Date.now(),
             location: {
             city: data.location.name,
             state: data.location.region
             },
             is_day: data.current.is_day ? true : false,
             weather_condition: data.current.condition.text.toLowerCase(),
-            date: new Date().toISOString().split('T')[0],
+            date: new Date(),
             pointsReceived: points,
             category: category,
             icon: icon

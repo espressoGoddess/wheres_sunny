@@ -9,7 +9,7 @@ export default function DetailedStatsLog({ logs }) {
   const weatherRows = 
   logs.map(matched => {
     return (<tr key={matched.id}>
-      <td>{DateTime.fromFormat(matched.date, 'yyyy-MM-dd').toLocaleString(DateTime.DATE_MED)}</td>
+      <td>{DateTime.fromJSDate(matched.date).toLocaleString(DateTime.DATE_MED)}</td>
       <td>{matched.location.city}, {matched.location.state}</td>
       <td>{matched.is_day ? 'yes' : 'no'}</td>
       <td>{matched.pointsReceived}</td>
@@ -36,7 +36,7 @@ export default function DetailedStatsLog({ logs }) {
 DetailedStatsLog.propTypes = {
   logs: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    date: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date).isRequired,
     is_day: PropTypes.bool.isRequired,
     pointsReceived: PropTypes.number.isRequired,
     location: PropTypes.shape({

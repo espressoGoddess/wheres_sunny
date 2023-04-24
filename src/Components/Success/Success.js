@@ -59,7 +59,7 @@ export default function Success({ log, forecast }) {
               </Card.Text>
               <Card.Text>
               </Card.Text>
-              <Button variant='outline-info' onClick={routeToStats}>See my points</Button>
+              <Button variant='outline-success' onClick={routeToStats}>See my points</Button>
                 <NextSunnyDay forecast={forecast}/>
             </Card.Body>
           </Card>

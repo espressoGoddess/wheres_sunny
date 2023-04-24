@@ -18,7 +18,7 @@ Where's Sunny is a silly app that allows users to 'check in.' Based on the user'
 1. Fork this repository.
 2. Create a local repository.
 3. Follow the Github on-screen commands to connect your local repository to your newly forked repository.
-4. `npm start` to start the application locally.
+4. `npm i` and `npm start` to start the application locally.
 5. Navigate to `http://localhost:3000` in your browser to use the application. 
   
 
